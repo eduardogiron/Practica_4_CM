@@ -24,17 +24,18 @@ public class Video {
             InputStream in = getClass().getResourceAsStream("/video.mpg");
             mPlayer = Manager.createPlayer(in, "video/mpeg");
             mPlayer.realize();
-            if ((mVidc = (VideoControl)mPlayer.getControl("VideoControl")) != null) {
-                mVideoItem = (Item)mVidc.initDisplayMode(VideoControl.USE_GUI_PRIMITIVE, null); 
-                }
+            
         }catch(IOException ioe){
             System.out.println(ioe);
         }catch(MediaException me){
-
+            System.out.println(me);
         }
         
     }
     public Item pantalla_video(){
+        if ((mVidc = (VideoControl)mPlayer.getControl("VideoControl")) != null) {
+                mVideoItem = (Item)mVidc.initDisplayMode(VideoControl.USE_GUI_PRIMITIVE, null);
+                }
         return mVideoItem;
     }
     public void start_video(){
